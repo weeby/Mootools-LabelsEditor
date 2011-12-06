@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Mootools LabelsEditor</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="js/mootools.js"></script>
+	<script type="text/javascript" src="js/mootoolsMore.js"></script> 
+	<script type="text/javascript" src="js/labelsEditor.js"></script>
+</head>
+<body>
+	<div id="example_1">Smart Label</div>
+	<div id="example_2">Some long label</div>
+	<table>
+		<tr>
+			<td>First cell</td>
+			<td><span id="example_3">Some label in table</span></td>
+			<td>Last one</td>
+		</tr>
+	</table>
+</body>
+<script type="text/javascript">
+	
+	(function() {
+		
+		var example_1 = $('example_1');
+		example_1.edit({max_chars: 30});
+		
+		var example_2 = $('example_2');
+		example_2.edit({});
+		
+		$('example_3').edit({});
+	})();
+
+</script>
+</html>

@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+.labels_editor {
+	position: relative;
+	display: block;
+}
+.labels_editor_input {
+	display: none;
+	border: 0px none;
+	resize: none;
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	
+}
+.labels_editor_menu {
+	display: none;
+	position: absolute;
+	z-index: 2;
+	bottom: -16px;
+	left: 0px;
+}
+.labels_editor_accept, .labels_editor_cancel {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	float: left;
+	cursor: pointer;
+}
+.labels_editor_accept {
+	background-image: url(../img/yes.png);
+}
+.labels_editor_cancel {
+	background-image: url(../img/no.png);
+}
+#example_1 {
+	color: #f00;
+	font-size: 19px;
+	width: 200px;
+}
+#example_2 {
+	margin-top: 20px;
+	font-size: 10px;
+	color: #00f;
+}
+table td {
+	border: 1px solid #ccc;
+}
