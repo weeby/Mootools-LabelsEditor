@@ -16,6 +16,7 @@ var LabelsEditor = new Class({
 	Implements: [Options, Events],
 	
 	options: {
+		id: null,
 		label: null,
 		new_lines: false,
 		max_chars: null,
@@ -34,20 +35,19 @@ var LabelsEditor = new Class({
 	/**
 	 * Object initilization, create new editor and bind i to selected text 
 	 */
-	initialize: function(element, board, options)
+	initialize: function(element, options)
 	{
-		if (!element || !board)
+		if (!element)
 		{
 			return false;
 		}
-		this._board = board;
 		this._element = element;
 		
 		this.setOptions(options);
 		
 		this.options.label = this._element.get('html');
 		this.render(); 
-		
+		this.fireEvent('create', this);
 	},
 		
 	/**
@@ -56,6 +56,7 @@ var LabelsEditor = new Class({
 	 */
 	elementClick: function(event)
 	{
+		event.stop();
 		this.show();
 		this._input.focus();
 	},
@@ -78,6 +79,7 @@ var LabelsEditor = new Class({
 		this.options.label = this._input.value;
 		this._element.set('html', this.options.label);
 		this.hide();
+		this.fireEvent('onAccept', this);
 	},
 	
 	/**
@@ -86,7 +88,6 @@ var LabelsEditor = new Class({
 	 */
 	inputKeyUp: function(event)
 	{
-		console.log(event.target);
 		if (!this.options.new_lines )
 		{
 			event.target.value = event.target.value.replace(new RegExp( "\\n", "g" ), '');
@@ -113,9 +114,6 @@ var LabelsEditor = new Class({
 		
 		this._input = new Element('textarea', {'class': this.options.css.input});
 		this._wrapper.grab(this._input);
-		
-		var input_styles = this._element.getStyles(['color', 'font-size', 'font-weight', 'font-family', 'margin']);
-		this._input.setStyles(input_styles);
 		
 		// Max chars limitation
 		if (this.options.max_chars)
@@ -165,6 +163,9 @@ var LabelsEditor = new Class({
 	{
 		this._input.value = null;
 		this._input.value = this.options.label;
+		
+		var input_styles = this._element.getStyles(['color', 'font-size', 'font-weight', 'font-family', 'margin', 'float', 'position', 'left', 'top', 'right', 'bottom', 'padding']);
+		this._input.setStyles(input_styles);
 
 		this._input.setStyle('display', 'block');
 		this._element.setStyle('display', 'none');
